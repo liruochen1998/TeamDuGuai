@@ -1,26 +1,8 @@
 $(document).ready(function () {
     async function newsFeeds() {   
         jwt = localStorage.getItem("jwt");
-        $('.col-6').append(
-            `<div id = private></div>`
-        )
-        //axios.delete('http://localhost:3000/private/trans/2', {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => console.log(res));
-        //axios.post('http://localhost:3000/private/increment',{data: 6}, {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => console.log(res));
-        let result  = await axios({
-            method: 'GET',
-            url: 'http://localhost:3000/account/status',
-            headers: {
-                'Authorization': 'Bearer ' + jwt,
-            }
-        });  
-        user = result.data.user.name;
-
-        axios.get('http://localhost:3000/private/trans', {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => drawTrans(res));
-        axios.get('http://localhost:3000/private/request', {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => drawRequest(res));
-    };
-
-    function drawRequest(res) {
-        let request = Object.keys(res.data.result);
+        //axios.delete('http://localhost:3000/private/trans', {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => console.log(res));
+        //axios.post('http://localhost:3000/private/increment',{data: 1}, {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => console.log(res));
         $('#private').append( `
             <div class="card bg-light">
             <div class="card-header">
@@ -31,6 +13,32 @@ $(document).ready(function () {
             </div>
             </div>`
         )
+        $('#private').append(
+            `<div class="card bg-light">
+            <div class="card-header">
+                Transfer
+            </div>
+            <div class="card-body" id="trans">
+            </div>
+            </div>
+            </div>`
+        )
+        let result  = await axios({
+            method: 'GET',
+            url: 'http://localhost:3000/account/status',
+            headers: {
+                'Authorization': 'Bearer ' + jwt,
+            }
+        });  
+        user = result.data.user.name;
+
+        axios.get('http://localhost:3000/private/request', {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => drawRequest(res));
+        axios.get('http://localhost:3000/private/trans', {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => drawTrans(res));
+    };
+
+    function drawRequest(res) {
+        let request = Object.keys(res.data.result);
+        
         for(let i = 0; i < request.length; i++) {
             let rec = res.data.result[request[i]];
             let acceptid = "accept" + rec.id
@@ -86,16 +94,6 @@ $(document).ready(function () {
 
     function drawTrans(res) {
         let trans = Object.keys(res.data.result);
-        $('#private').append(
-            `<div class="card bg-light">
-            <div class="card-header">
-                Transfer
-            </div>
-            <div class="card-body" id="trans">
-            </div>
-            </div>
-            </div>`
-        )
         for(let i = 0; i < trans.length; i++) {
             let rec = res.data.result[trans[i]];
             let likeid = "like" + rec.id;

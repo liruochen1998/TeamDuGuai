@@ -42,6 +42,9 @@ async function loggedIn() {
         }
     });  
     
+    axios.get("http://localhost:3000/user/contact", {headers: { Authorization: `Bearer ${jwt}` }}).catch(function () {
+        window.location.replace("../login/firsttime.html");
+      });
     
     console.log(result);
     axios.get("http://localhost:3000/user/info", {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => drawProfile(res));
@@ -197,6 +200,7 @@ function drawTransfer(res) {
             let public = $('.textpublic').is(":checked")
             if(!res.data.result.includes(to)) alert("friend not found")
             else  if(amount < 1) alert("invalid amount")
+            else if(comment == "" || comment == undefined) alert("please leave a comment")
             else {
                 axios.get("http://localhost:3000/user/amount", {headers: { Authorization: `Bearer ${jwt}` }}).then((result) => {
                     let asset = result.data.result
@@ -269,8 +273,6 @@ function drawProfile(res) {
                 <p> Onyen </p>
                 <input type="text" value="${person.onyen}">
                 <p> PID </p>
-                <input type="text" value="${person.pid}">
-                <p> Amount </p>
                 <input type="text" value="${person.pid}">
             </form>
             <input class="btn btn-info" type="button" value="submit" id="submitprofilebtn"> 

@@ -39,7 +39,7 @@ $(document).ready(function () {
               "kevin"
             ]
           },}, {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => console.log(res));
-        axios.post('http://localhost:3000/private/increment', {data: 1}, {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => console.log(res));
+        //axios.post('http://localhost:3000/private/increment', {data: 1}, {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => console.log(res));
         window.location.replace("../index.html");
     });
 });

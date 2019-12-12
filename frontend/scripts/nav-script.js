@@ -54,6 +54,7 @@ function loadNav() {
         <span id="logoutbtn"> 
 
         <span> <i class="fas fa-sign-out-alt" id="logoutbtn" type=submit"></i> log out </span>
+
         </span>
       </nav>
       `);
@@ -77,7 +78,20 @@ function loadNav() {
 </div>
       <div class="row">
         <div class="col" id="profile"> </div>
-        <div class="col-6" id="feed"> </div>
+        <div class="col-6" id="feed"> 
+          <div id="public" class="card bg-light">
+                <div class="card-header">
+                    Today's Dinning
+                </div>
+                <div class="card-body" id="dinninginfo"> </div>
+                <button type="button" class="btn btn-outline-success" id="comment">how do you think about today's dinning</button>
+                <div class="card-header">
+                    Today's parking
+                </div>
+                <div class="card-body" id="parkinginfo"> </div>
+          </div>
+          <div id = private></div>
+        </div>
         <div class="col" id="contact"> </div>
       </div>
 

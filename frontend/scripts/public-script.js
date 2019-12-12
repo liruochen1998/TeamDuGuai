@@ -13,15 +13,6 @@ $(document).ready(function () {
         
     };
     function drawMenu(res) {
-        $('.col-6').append(
-            `<div id="public" class="card bg-light">
-                <div class="card-header">
-                    Today's Dinning
-                </div>
-                <div class="card-body" id="dinninginfo"> </div>
-                <button type="button" class="btn btn-outline-success" id="comment">how do you think about today's dinning</button>
-            </div>`
-        );
         //console.log(Object.keys(res.data.result));
         let dinnings = Object.keys(res.data.result);
      
@@ -56,18 +47,23 @@ $(document).ready(function () {
                 $('#tete').on('click', () => {
                     console.log($(`#textcommentinput`));
                     let comment = $('#textcommentinput').val();
-                    console.log(comment);
-                    axios.get('http://localhost:3000/public/increment', {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => {
-                        let nextId = 1;
-                        nextId += res.data.result;
-                        axios.get("http://localhost:3000/account/status", {headers: { Authorization: `Bearer ${jwt}` }}).then((result) => {
-                            let user = "";
-                            user += result.data.user.name;
-                            axios.post('http://localhost:3000/public/comment/' + nextId, {data :{id: nextId, from: user, comment: comment, likes: []}}, {headers: { Authorization: `Bearer ${jwt}` }})
-                            axios.post('http://localhost:3000/public/increment', {data: nextId}, {headers: { Authorization: `Bearer ${jwt}` }})
+                    if(comment == "" || comment == undefined){
+                        alert("please leave a comment")
+                    }
+                    else {
+                        axios.get('http://localhost:3000/public/increment', {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => {
+                            let nextId = 1;
+                            nextId += res.data.result;
+                            axios.get("http://localhost:3000/account/status", {headers: { Authorization: `Bearer ${jwt}` }}).then((result) => {
+                                let user = "";
+                                user += result.data.user.name;
+                                axios.post('http://localhost:3000/public/comment/' + nextId, {data :{id: nextId, from: user, comment: comment, likes: []}}, {headers: { Authorization: `Bearer ${jwt}` }})
+                                axios.post('http://localhost:3000/public/increment', {data: nextId}, {headers: { Authorization: `Bearer ${jwt}` }})
+                            })
                         })
-                    })
-                    $("#submitpost").remove()
+                        $("#submitpost").remove()
+                        window.location.reload();
+                    }
                 })
             }
         })
@@ -131,6 +127,7 @@ $(document).ready(function () {
                         $('#' +  id).append(`<button id = ${delid} class="btn btn-sm btn-outline-dark">delete</button>`)
                         $('#' + delid).on('click', () => {
                             axios.delete('http://localhost:3000/public/comment/' + rec.id, {headers: { Authorization: `Bearer ${jwt}` }})
+                            window.location.reload();
                         })
                     }
                 })
@@ -139,14 +136,6 @@ $(document).ready(function () {
     }
 
     function drawPark(res) {
-        $('.col-6').append(
-            `<div id="public" class="card bg-light">
-                <div class="card-header">
-                    Today's parking
-                </div>
-                <div class="card-body" id="parkinginfo"> </div>
-            </div>`
-        );
         let parks = Object.keys(res.data.result);
         for(let i = 0; i < parks.length; i++) {
             let park = res.data.result[parks[i]];
