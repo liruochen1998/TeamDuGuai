@@ -26,20 +26,20 @@ $(document).ready(function () {
         axios.post("http://localhost:3000/user/info", {data: userInfo},{headers: { Authorization: `Bearer ${jwt}` }});
         axios.post("http://localhost:3000/user/contact", {data: userContact},{headers: { Authorization: `Bearer ${jwt}` }});
         axios.post("http://localhost:3000/user/amount", {data: 1000},{headers: { Authorization: `Bearer ${jwt}` }});
-        axios.post('http://localhost:3000/private/trans/1', {data: {
-            id: 1,
-            from: "kevin",
-            to: "larry",
-            amount: 10000,
-            comment: "duguai",
-            accepted: true,
-            likes: [
-              "larry",
-              "test",
-              "kevin"
-            ]
-          },}, {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => console.log(res));
-        axios.post('http://localhost:3000/private/increment', {data: 1}, {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => console.log(res));
+        // axios.post('http://localhost:3000/private/trans/1', {data: {
+        //     id: 1,
+        //     from: "kevin",
+        //     to: "larry",
+        //     amount: 10000,
+        //     comment: "duguai",
+        //     accepted: true,
+        //     likes: [
+        //       "larry",
+        //       "test",
+        //       "kevin"
+        //     ]
+        //   },}, {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => console.log(res));
+        //axios.post('http://localhost:3000/private/increment', {data: 1}, {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => console.log(res));
         window.location.replace("../index.html");
     });
 });
