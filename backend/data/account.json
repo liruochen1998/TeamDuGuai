@@ -35,6 +35,30 @@
     },
     "test123": {
       "passwordHash": "$2b$10$vuTLm9Ggsigit1nk0ZrrCusjIFw2RLg1xDsHIJKW/0Vjvkk/q3Yc6"
+    },
+    "huang": {
+      "passwordHash": "$2b$10$goK1eCzRR76UAK3ypMSmT.w8X41kiB3V/D/eyxw/TcbsoBYO.HRky"
+    },
+    "duguai": {
+      "passwordHash": "$2b$10$s63kJ/YYB7fyLM4oxFbzWuWfpul1w0quvg/FGdyKdtMzsvrVHf6Au"
+    },
+    "shepi": {
+      "passwordHash": "$2b$10$366UaR8HGJju1cboVrZhcOHZ9.dC3sVwE5Ea2myuLBSSbl9clWQna"
+    },
+    "kevin2": {
+      "passwordHash": "$2b$10$wymYPykdpvTeNzBQg21tZOAclDh2NY/4H/3PCdzRyt6qg4s1a8cRG"
+    },
+    "kevin3": {
+      "passwordHash": "$2b$10$jrAXa7mqTo5IvqCJoNVxKeeetSy.A9NsEdFSvdeVY4dna2N77xfwy"
+    },
+    "cyy": {
+      "passwordHash": "$2b$10$/QLXxQqQoReQWl5Bd486Fe/liW.FVKekKiBcGJgC12n0BdBAwBj.O"
+    },
+    "flb": {
+      "passwordHash": "$2b$10$h5ODCFQSrjK/56DPav7Wj.rjF9GAoCp17.WaZps8B8yhlR5hNgDiC"
+    },
+    "huang2": {
+      "passwordHash": "$2b$10$wbAlwxbz6LjdkqsYbbDnw.uFzF2BONggZp5Hjbf3djBECkOA9LJGq"
     }
   }
 }
