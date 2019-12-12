@@ -22,7 +22,7 @@ $(document).ready(function () {
     function drawRequest(res) {
         let request = Object.keys(res.data.result);
         $('#private').append( `
-            <div class="card bg-light">
+            <div class="card bg-light special-card">
             <div class="card-header">
                 Request
             </div>
@@ -87,7 +87,7 @@ $(document).ready(function () {
     function drawTrans(res) {
         let trans = Object.keys(res.data.result);
         $('#private').append(
-            `<div class="card bg-light">
+            `<div class="card bg-light special-card">
             <div class="card-header">
                 Transfer
             </div>

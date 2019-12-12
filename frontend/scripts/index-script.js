@@ -229,7 +229,7 @@ function drawTransfer(res) {
 
 function renderProfile(person) {
     $(`#profile`).append(`
-    <div  class="card bg-light" style="max-width:15rem;">
+    <div class="card bg-light special-card" style="max-width:15rem;">
     <div class="card-header">
         My Profile
     </div>
@@ -302,7 +302,7 @@ function drawContact(res) {
 
     console.log("in contact", res);
     $(`#contact`).append(`
-        <div class="card bg-light">
+        <div class="card bg-light special-card">
         <div class="card-header" id="contactcardheader">
             Contact
         </div>

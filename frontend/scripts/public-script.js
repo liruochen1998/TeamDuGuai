@@ -14,7 +14,7 @@ $(document).ready(function () {
     };
     function drawMenu(res) {
         $('.col-6').append(
-            `<div id="public" class="card bg-light">
+            `<div id="public" class="card bg-light special-card">
                 <div class="card-header">
                     Today's Dinning
                 </div>
@@ -140,7 +140,7 @@ $(document).ready(function () {
 
     function drawPark(res) {
         $('.col-6').append(
-            `<div id="public" class="card bg-light">
+            `<div id="public" class="card bg-light special-card">
                 <div class="card-header">
                     Today's parking
                 </div>
