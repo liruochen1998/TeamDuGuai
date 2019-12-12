@@ -62,8 +62,12 @@ $(document).ready(function () {
                             })
                         })
                         $("#submitpost").remove()
+                        setTimeout(() => {
+                            
                         window.location.reload();
+                        }, 1000);
                     }
+
                 })
             }
         })

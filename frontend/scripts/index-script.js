@@ -41,79 +41,85 @@ async function loggedIn() {
             'Authorization': 'Bearer ' + jwt,
         }
     });  
-
-    $(`#profile`).append(`
-        <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModalRequest">
-            request
-        </button>
-        `);
-
-    $(`#profile`).append(`
-    <div class="modal fade" id="exampleModalRequest" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Request money</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-        <form id = 'submitrequest'> 
-                    <input id="requestfrom" type = "text" name = "to" class = 'requestto' placeholder="from">
-                    <input type = "number" name = "amount" class = 'requesamount' placeholder="amount">
-                    <input type = "text" name = "reference" class = 'requestcomment' placeholder="any comment?">
-                    <input type = "checkbox" name = "public" class = 'requestpublic'>
-                    <label for = "public">Do you want others notice when you recieve?</label>
-                  </form>
-        
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="request btn btn-primary">request</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  `);
-
-  $(`#profile`).append(`
-        <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModalSend">
-            send
-        </button>
-        `);
-
-    $(`#profile`).append(`
-    <div class="modal fade" id="exampleModalSend" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Send money</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-        <div id = 'submitsend'> 
-        <input id="transferto" type = "text" name = "to" class = 'textto' placeholder="to">
-        <input type = "number" name = "amount" class = 'textamount' placeholder="amount">
-        <input type = "text" name = "reference" class = 'textcomment' placeholder="any comment?">
-        <input type = "checkbox" name = "public" class = 'textpublic'>
-        <label for = "public">Do you want others see this transfer?</label>
-      </div> 
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="send btn btn-primary">send</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  `);
+  
     
     axios.get("http://localhost:3000/user/contact", {headers: { Authorization: `Bearer ${jwt}` }}).catch(function () {
         window.location.replace("../login/firsttime.html");
       });
+      axios.get("http://localhost:3000/user/amount", {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => {
+        $('#profile').append(`<div> you have <p> $${res.data.result} </div>`)
+
+
+    $(`#profile`).append(`
+    <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModalRequest">
+        request
+    </button>
+    `);
+
+$(`#profile`).append(`
+<div class="modal fade" id="exampleModalRequest" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Request money</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+    <form id = 'submitrequest'> 
+                <input id="requestfrom" type = "text" name = "to" class = 'requestto' placeholder="from">
+                <input type = "number" name = "amount" class = 'requesamount' placeholder="amount">
+                <input type = "text" name = "reference" class = 'requestcomment' placeholder="any comment?">
+                <input type = "checkbox" name = "public" class = 'requestpublic'>
+                <label for = "public">Do you want others notice when you recieve?</label>
+              </form>
+    
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <button type="button" class="request btn btn-primary">request</button>
+    </div>
+  </div>
+</div>
+</div>
+`);
+
+$(`#profile`).append(`
+    <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModalSend">
+        send
+    </button>
+    `);
+
+$(`#profile`).append(`
+<div class="modal fade" id="exampleModalSend" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Send money</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+    <div id = 'submitsend'> 
+    <input id="transferto" type = "text" name = "to" class = 'textto' placeholder="to">
+    <input type = "number" name = "amount" class = 'textamount' placeholder="amount">
+    <input type = "text" name = "reference" class = 'textcomment' placeholder="any comment?">
+    <input type = "checkbox" name = "public" class = 'textpublic'>
+    <label for = "public">Do you want others see this transfer?</label>
+  </div> 
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <button type="button" class="send btn btn-primary">send</button>
+    </div>
+  </div>
+</div>
+</div>
+`);
+    })
+    
     
     console.log(result);
     axios.get("http://localhost:3000/user/info", {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => drawProfile(res));
@@ -222,7 +228,10 @@ function drawTransfer(res) {
                                 console.log(sum);
                                 axios.post('http://localhost:3000/user/amount', {data: sum}, {headers: { Authorization: `Bearer ${jwt}` }})
                                 
-                                window.location.reload();
+                                setTimeout(() => {
+                            
+                                    window.location.reload();
+                                    }, 1000);
                             }) 
                         })
                     }
@@ -235,8 +244,6 @@ function drawTransfer(res) {
 }
 
 function renderProfile(person) {
-    axios.get("http://localhost:3000/user/amount", {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => {
-        console.log(res)
         $(`#profile`).append(`
             <div  class="card bg-light" style="max-width:15rem;">
             <div class="card-header">
@@ -249,14 +256,12 @@ function renderProfile(person) {
             <p> Last Name: ${person.lastname} </p>
             <p> Onyen: ${person.onyen} </p>
             <p> PID: ${person.pid} </p>
-            <p> amount: ${res.data.result} </p>
 
             <input class="btn btn-outline-dark btn-sm" type="button" value="edit" id="editprofilebtn"> 
             </div>
             </div>
 
         `);
-    })
 }
     
 function drawProfile(res) {
