@@ -2,7 +2,8 @@ $(document).ready(function () {
     async function newsFeeds() {   
         jwt = localStorage.getItem("jwt");
         //axios.delete('http://localhost:3000/private/trans', {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => console.log(res));
-        //axios.post('http://localhost:3000/private/increment',{data: 1}, {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => console.log(res));
+        // xiao xiao le
+        //axios.post('http://localhost:3000/public/comment',{data: {}}, {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => console.log(res));
         $('#private').append( `
             <div class="card bg-light special-card">
             <div class="card-header">
