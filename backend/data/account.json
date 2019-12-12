@@ -59,6 +59,18 @@
     },
     "huang2": {
       "passwordHash": "$2b$10$wbAlwxbz6LjdkqsYbbDnw.uFzF2BONggZp5Hjbf3djBECkOA9LJGq"
+    },
+    "chen": {
+      "passwordHash": "$2b$10$fraflx/PsF6zW9fwMaJJmeIenyKECs5Zs0bKIkzOJu6Hz5fGOwi8."
+    },
+    "cheny": {
+      "passwordHash": "$2b$10$2.s0E2M30YlXjNMiNWLw0.vOJplLFg6F3anqYkHVUJFArgl5DosLO"
+    },
+    "chenyyy": {
+      "passwordHash": "$2b$10$ORAriEsGsvxGLqc60AEO7u3wdnJ35erj9HB3wqactBwv1j/yehiJy"
+    },
+    "chenyyyy": {
+      "passwordHash": "$2b$10$uGnFdW5A1t96IT3X/K4oXuafK1CYsVPEGTNg2SG.GPVqoq4FyWJee"
     }
   }
 }

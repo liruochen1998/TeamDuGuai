@@ -1,4 +1,86 @@
 async function main() {
+    $(`body`).append(`
+    <div class="modal fade" id="exampleModalRequest" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Request money</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <form id = 'submitrequest'> 
+                    <input id="requestfrom" type = "text" name = "to" class = 'requestto' placeholder="from">
+                    <input type = "number" name = "amount" class = 'requesamount' placeholder="amount">
+                    <input type = "text" name = "reference" class = 'requestcomment' placeholder="any comment?">
+                    <input type = "checkbox" name = "public" class = 'requestpublic'>
+                    <label for = "public">Do you want others notice when you recieve?</label>
+                  </form>
+        
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="request btn btn-primary">request</button>
+        </div>
+      </div>
+    </div>
+    </div>
+    `);
+    
+    $(`body`).append(`
+
+    <div class="modal fade" id="exampleModalCon" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add Contact</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <input class="modal-body" id="contactname">
+            
+        </input>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="addcontactbtn">Save changes</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    `);
+
+    $(`body`).append(`
+<div class="modal fade" id="exampleModalSend" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Send money</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+    <div id = 'submitsend'> 
+    <input id="transferto" type = "text" name = "to" class = 'textto' placeholder="to">
+    <input type = "number" name = "amount" class = 'textamount' placeholder="amount">
+    <input type = "text" name = "reference" class = 'textcomment' placeholder="any comment?">
+    <input type = "checkbox" name = "public" class = 'textpublic'>
+    <label for = "public">Do you want others see this transfer?</label>
+  </div> 
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <button type="button" class="send btn btn-primary">send</button>
+    </div>
+  </div>
+</div>
+</div>
+
+                        
+                        
+`);
 
 
     let jwt = localStorage.getItem("jwt");
@@ -70,34 +152,6 @@ async function loggedIn() {
     </button>
     `);
 
-$(`#profile`).append(`
-<div class="modal fade" id="exampleModalRequest" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">Request money</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-    <form id = 'submitrequest'> 
-                <input id="requestfrom" type = "text" name = "to" class = 'requestto' placeholder="from">
-                <input type = "number" name = "amount" class = 'requesamount' placeholder="amount">
-                <input type = "text" name = "reference" class = 'requestcomment' placeholder="any comment?">
-                <input type = "checkbox" name = "public" class = 'requestpublic'>
-                <label for = "public">Do you want others notice when you recieve?</label>
-              </form>
-    
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      <button type="button" class="request btn btn-primary">request</button>
-    </div>
-  </div>
-</div>
-</div>
-`);
 
 $(`#balance`).append(`
     <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModalSend">
@@ -105,59 +159,8 @@ $(`#balance`).append(`
     </button>
     `);
 
-$(`#profile`).append(`
-<div class="modal fade" id="exampleModalSend" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">Send money</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-    <div id = 'submitsend'> 
-    <input id="transferto" type = "text" name = "to" class = 'textto' placeholder="to">
-    <input type = "number" name = "amount" class = 'textamount' placeholder="amount">
-    <input type = "text" name = "reference" class = 'textcomment' placeholder="any comment?">
-    <input type = "checkbox" name = "public" class = 'textpublic'>
-    <label for = "public">Do you want others see this transfer?</label>
-  </div> 
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      <button type="button" class="send btn btn-primary">send</button>
-    </div>
-  </div>
-</div>
-</div>
 
-                        
-                        
-`);
-      $(`#profile`).append(`
-
-        <div class="modal fade" id="exampleModalCon" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Contact</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <input class="modal-body" id="contactname">
-                
-            </input>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="addcontactbtn">Save changes</button>
-            </div>
-            </div>
-        </div>
-        </div>
-        `);
-
+     
     })
     
     
@@ -376,6 +379,7 @@ function drawContact(res) {
     
     $(`#addcontactbtn`).on('click', () => {
         let contact = $(`#contactname`).val();
+        console.log(contact)
         axios.post("http://localhost:3000/user/contact/" + contact, {data: {} },{headers: { Authorization: `Bearer ${jwt}` }});
         window.location.reload();
 
