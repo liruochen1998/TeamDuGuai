@@ -41,22 +41,7 @@ async function loggedIn() {
             'Authorization': 'Bearer ' + jwt,
         }
     });  
-    
-    axios.get("http://localhost:3000/user/contact", {headers: { Authorization: `Bearer ${jwt}` }}).catch(function () {
-        window.location.replace("../login/firsttime.html");
-      });
-    
-    console.log(result);
-    axios.get("http://localhost:3000/user/info", {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => drawProfile(res));
-    axios.get("http://localhost:3000/user/contact/", {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => drawContact(res));
-    axios.get("http://localhost:3000/user/contact/", {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => drawTransfer(res));
-    axios.get("http://localhost:3000/user/contact/", {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => drawRequest(res));
 
-
-}
-
-function drawRequest(res) {
-    //$(`#profile`).append(`<button type="button" class="btn btn-primary" id="request"> request money </button>`);
     $(`#profile`).append(`
         <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModalRequest">
             request
@@ -91,6 +76,57 @@ function drawRequest(res) {
     </div>
   </div>
   `);
+
+  $(`#profile`).append(`
+        <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModalSend">
+            send
+        </button>
+        `);
+
+    $(`#profile`).append(`
+    <div class="modal fade" id="exampleModalSend" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Send money</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <div id = 'submitsend'> 
+        <input id="transferto" type = "text" name = "to" class = 'textto' placeholder="to">
+        <input type = "number" name = "amount" class = 'textamount' placeholder="amount">
+        <input type = "text" name = "reference" class = 'textcomment' placeholder="any comment?">
+        <input type = "checkbox" name = "public" class = 'textpublic'>
+        <label for = "public">Do you want others see this transfer?</label>
+      </div> 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="send btn btn-primary">send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  `);
+    
+    axios.get("http://localhost:3000/user/contact", {headers: { Authorization: `Bearer ${jwt}` }}).catch(function () {
+        window.location.replace("../login/firsttime.html");
+      });
+    
+    console.log(result);
+    axios.get("http://localhost:3000/user/info", {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => drawProfile(res));
+    axios.get("http://localhost:3000/user/contact/", {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => drawContact(res));
+    axios.get("http://localhost:3000/user/contact/", {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => drawTransfer(res));
+    axios.get("http://localhost:3000/user/contact/", {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => drawRequest(res));
+
+
+}
+
+function drawRequest(res) {
+    //$(`#profile`).append(`<button type="button" class="btn btn-primary" id="request"> request money </button>`);
+    
 
     //$('#request').on('click', () => {
         //$('#request').hide()
@@ -138,40 +174,7 @@ function drawRequest(res) {
 function drawTransfer(res) {
     // send money here
     //$(`#profile`).append(`<button type="button" class="btn btn-dark" id="send"> send </button>`);
-    $(`#profile`).append(`
-        <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModalSend">
-            send
-        </button>
-        `);
-
-    let jwt = localStorage.getItem("jwt");
-    $(`#profile`).append(`
-    <div class="modal fade" id="exampleModalSend" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Send money</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-        <div id = 'submitsend'> 
-        <input id="transferto" type = "text" name = "to" class = 'textto' placeholder="to">
-        <input type = "number" name = "amount" class = 'textamount' placeholder="amount">
-        <input type = "text" name = "reference" class = 'textcomment' placeholder="any comment?">
-        <input type = "checkbox" name = "public" class = 'textpublic'>
-        <label for = "public">Do you want others see this transfer?</label>
-      </div> 
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="send btn btn-primary">send</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  `);
+    
     //$('#send').on('click', () => {
         //$('#send').hide()
         /*
@@ -232,26 +235,28 @@ function drawTransfer(res) {
 }
 
 function renderProfile(person) {
-    $(`#profile`).append(`
-    <div  class="card bg-light" style="max-width:15rem;">
-    <div class="card-header">
-        My Profile
-    </div>
-    <div class="card-body" id="profilecol">
+    axios.get("http://localhost:3000/user/amount", {headers: { Authorization: `Bearer ${jwt}` }}).then((res) => {
+        console.log(res)
+        $(`#profile`).append(`
+            <div  class="card bg-light" style="max-width:15rem;">
+            <div class="card-header">
+                My Profile
+            </div>
+            <div class="card-body" id="profilecol">
 
-    <p> Username: ${person.username} </p>
-    <p> First Name: ${person.firstname} </p>
-    <p> Last Name: ${person.lastname} </p>
-    <p> Onyen: ${person.onyen} </p>
-    <p> PID: ${person.pid} </p>
-    <p> amount: ${person.amount} </p>
+            <p> Username: ${person.username} </p>
+            <p> First Name: ${person.firstname} </p>
+            <p> Last Name: ${person.lastname} </p>
+            <p> Onyen: ${person.onyen} </p>
+            <p> PID: ${person.pid} </p>
+            <p> amount: ${res.data.result} </p>
 
-    <input class="btn btn-outline-dark btn-sm" type="button" value="edit" id="editprofilebtn"> 
-    </div>
-    </div>
+            <input class="btn btn-outline-dark btn-sm" type="button" value="edit" id="editprofilebtn"> 
+            </div>
+            </div>
 
-    `);
-
+        `);
+    })
 }
     
 function drawProfile(res) {
