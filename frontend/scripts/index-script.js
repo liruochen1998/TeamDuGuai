@@ -244,6 +244,7 @@ function renderProfile(person) {
     <p> Last Name: ${person.lastname} </p>
     <p> Onyen: ${person.onyen} </p>
     <p> PID: ${person.pid} </p>
+    <p> amount: ${person.amount} </p>
 
     <input class="btn btn-outline-dark btn-sm" type="button" value="edit" id="editprofilebtn"> 
     </div>
