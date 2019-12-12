@@ -84,8 +84,13 @@ $(document).ready(function () {
                                     axios.post('http://localhost:3000/private/request/' + rec.id +'/accepted', {data: true}, {headers: { Authorization: `Bearer ${jwt}` }})
                                 }) 
                             })
+                            $('#' + acceptid).remove()
+                                setTimeout(() => {
+                            
+                                    window.location.reload();
+                                    }, 1000);
+                            
                         }
-                        $('#' + acceptid).remove()
                     })
                 })
             }

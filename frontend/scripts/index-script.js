@@ -21,7 +21,7 @@ async function main() {
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="request btn btn-primary">request</button>
+          <button type="button" id="requestmodalbtn" class="request btn btn-primary">request</button>
         </div>
       </div>
     </div>
@@ -196,7 +196,8 @@ function drawRequest(res) {
             source: res.data.result,
         });
         },300));
-        $('.request').on('click', () => {
+        $('#requestmodalbtn').on('click', () => {
+            console.log("request");
             let to = $('.requestto').val();
             let amount = $('.requesamount').val();
             let comment = $('.requestcomment').val();
@@ -214,6 +215,11 @@ function drawRequest(res) {
                         axios.post('http://localhost:3000/private/increment', {data: nextId}, {headers: { Authorization: `Bearer ${jwt}` }})
                     }) 
                 })
+
+                                setTimeout(() => {
+                            
+                                    window.location.reload();
+                                    }, 1000);
             };
             //$('#submitrequest').remove();
             //$('#request').show()
